@@ -3,66 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>前端网页</title>
   <style>
-    .page {
-      display: none;
-    }
-
-    .active-page {
-      display: block;
-    }
-
-    .sidebar {
-      width: 200px;
-      height: 100%;
+    /* 导航栏样式 */
+    .navbar {
+      display: flex;
+      justify-content: space-evenly;
       background-color: #f2f2f2;
-      position: fixed;
-      top: 0;
-      left: 0;
+      padding: 10px;
     }
 
+    /* 按钮样式 */
+    .navbar button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    /* 悬浮效果 */
+    .navbar button:hover {
+      background-color: #45a049;
+    }
+
+    /* 页面样式 */
     .content {
-      margin-left: 200px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* 图片样式 */
+    .content img {
+      max-width: 100%;
+      height: auto;
     }
   </style>
+  <title>网页示例</title>
 </head>
 <body>
-  <div class="sidebar">
-    <button onclick="showPage(1)">第一页</button>
-    <button onclick="showPage(2)">第二页</button>
-    <button onclick="showPage(3)">个人中心</button>
+  <!-- 导航栏 -->
+  <div class="navbar">
+    <button onclick="showPage(1)">页面1</button>
+    <button onclick="showPage(2)">页面2</button>
+    <button onclick="showPage(3)">页面3</button>
   </div>
 
+  <!-- 页面内容 -->
   <div class="content">
-    <div id="page-1" class="page active-page">
-      <h1>大家好，我叫龚宇</h1>
+    <!-- 页面1 -->
+    <div id="page1">
+      <h1>页面1</h1>
+      <img src="第一页.png" alt="图片1">
     </div>
 
-    <div id="page-2" class="page">
-      <h1>第二页内容</h1>
-      <video controls>
-        <source src="video.mp4" type="video/mp4">
-      </video>
+    <!-- 页面2 -->
+    <div id="page2" style="display: none;">
+      <h1>页面2</h1>
+      <img src="第二页.png" alt="图片2">
     </div>
 
-    <div id="page-3" class="page">
-      <h1>个人中心</h1>
-      <p>个人信息内容</p>
+    <!-- 页面3 -->
+    <div id="page3" style="display: none;">
+      <h1>页面3</h1>
+      <img src="第三页.png" alt="图片3">
     </div>
   </div>
 
   <script>
+    // 显示指定页面
     function showPage(pageNumber) {
-      var pages = document.getElementsByClassName('page');
+      // 隐藏所有页面
+      var pages = document.getElementsByClassName("content")[0].children;
       for (var i = 0; i < pages.length; i++) {
-        pages[i].classList.remove('active-page');
+        pages[i].style.display = "none";
       }
 
-      var currentPage = document.getElementById('page-' + pageNumber);
-      if (currentPage) {
-        currentPage.classList.add('active-page');
-      }
+      // 显示指定页面
+      document.getElementById("page" + pageNumber).style.display = "block";
     }
   </script>
 </body>
