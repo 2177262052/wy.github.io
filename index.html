@@ -14,7 +14,7 @@
 
     /* 按钮样式 */
     .navbar button {
-      background-color: #4CAF50;
+      background-color: #6ec3ff;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -24,9 +24,53 @@
 
     /* 悬浮效果 */
     .navbar button:hover {
-      background-color: #45a049;
+      background-color: #64aee3;
     }
 
+    /* 弹窗样式 */
+    .notice {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #f2f2f2;
+      border-radius: 5px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      border: 1px solid #fff;
+    }
+
+    @media (max-width: 600px) {
+      .notice {
+        width: 65%;
+        height: auto;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .notice {
+        width: 35%;
+        height: auto;
+      }
+    }
+
+    .notice-bd img {
+      width: 100%;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .notice-bd p {
+      padding: 0 15px;
+    }
+
+    .notice-close {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      color: #fff;
+      font-size: 26px;
+      cursor: pointer;
+    }
+    
     /* 页面样式 */
     .content {
       text-align: center;
@@ -36,6 +80,10 @@
     /* 图片样式 */
     .content img {
       max-width: 100%;
+      height: auto;
+    }
+
+    #page1 img {
       height: auto;
     }
   </style>
@@ -50,10 +98,21 @@
   </div>
 
   <!-- 页面内容 -->
+  <!-- 弹窗 -->
+  <div class="notice">
+    <div class="notice-hd">
+      <span class="notice-close">&times;</span>
+    </div>
+    <div class="notice-bd">
+      <img src="./fish.jpg" alt="">
+      <p>月光鱼也叫花斑剑尾鱼，适应能力强，繁殖能力也强，每个月只需要给它们换一到两次水就可以了，即便是饿上十天半个月都不会死。
+        <br>
+        对于工作比较繁忙的人来说养月光鱼会是很好的选择，不过如果每天都去喂食月光鱼会长得更好哦</p>
+    </div>
+  </div>
   <div class="content">
     <!-- 页面1 -->
     <div id="page1">
-      <h1>页面1</h1>
       <img src="第一页.png" alt="">
     </div>
 
@@ -69,6 +128,15 @@
   </div>
 
   <script>
+    // 获取弹窗和关闭按钮的引用
+    var notice = document.querySelector(".notice");
+    var noticeClose = document.querySelector(".notice-close");
+
+    // 页面加载后显示弹窗
+    document.addEventListener('DOMContentLoaded', function() {
+      notice.style.display = "block";
+    });
+
     // 显示指定页面
     function showPage(pageNumber) {
       // 隐藏所有页面
@@ -80,6 +148,11 @@
       // 显示指定页面
       document.getElementById("page" + pageNumber).style.display = "block";
     }
+
+    // 点击关闭按钮时关闭弹窗
+    noticeClose.addEventListener("click", function () {
+      notice.style.display = "none";
+    })
   </script>
 </body>
 </html>
